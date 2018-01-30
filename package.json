@@ -1,0 +1,55 @@
+{
+  "name": "btc-converter",
+  "version": "1.0.0",
+  "description": "A CLI to convert Bitcoin to any currency provided.",
+  "homepage": "https://github.com/adrpnt/btc-converter#readme",
+  "author": "Adriano Vasconcelos",
+  "license": "MIT",
+  "main": "index.js",
+  "preferGlobal": true,
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src/*.js",
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register",
+    "test:tdd": "./node_modules/.bin/mocha tests/**/*.spec.js --watch --reporter=min --require babel-register",
+    "test:coverage": "./node_modules/.bin/nyc npm test",
+    "clear": "rimraf bin",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir bin src",
+    "build:watch": "npm run build -- --watch",
+    "prepush": "npm run lint && npm run test:coverage"
+  },
+  "bin": {
+    "btc-converter": "bin/main.js"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrpnt/btc-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adrpnt/btc-converter/issues"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-chai-friendly": "^0.4.1",
+    "eslint-plugin-import": "^2.8.0",
+    "husky": "^0.14.3",
+    "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
